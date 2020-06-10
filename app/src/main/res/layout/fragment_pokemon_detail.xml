@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.viveksharma.pokedex_new.ui.details.PokemonDetailViewModel" />
+        <variable
+            name="pokemon"
+            type="com.viveksharma.pokedex_new.database.Pokemon" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.details.PokemonDetailFragment">
+
+        <ImageView
+            android:id="@+id/ivBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@id/ivBackButton"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivBackButton"
+            android:layout_alignTop="@+id/ivImage"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@id/ivImage"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#707070"
+            android:textSize="16sp"
+            tools:text="#001" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNum"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@id/ivImage"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#474646"
+            android:textSize="22sp"
+            tools:text="Kakuna" />
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_alignBottom="@+id/ivImage"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toEndOf="@id/ivImage"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#474646"
+            android:textSize="16sp"
+            tools:text="TYPE: " />
+
+        <RelativeLayout
+            android:id="@+id/layoutLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center">
+
+            <ProgressBar
+                android:id="@+id/progressBarLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progressBarLoading"
+                android:fontFamily="@font/roboto"
+                android:text="@string/loading" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutAbout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ivImage"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/about_background"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/pokedexData"
+                android:textColor="#474646"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvData"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Height"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvData"
+                android:layout_marginStart="@dimen/marginStartAbout"
+                android:layout_marginTop="50dp"
+                android:layout_toEndOf="@id/tvH"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/tvW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvH"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Weight"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvH"
+                android:layout_marginStart="@dimen/marginStartAbout"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:layout_toEndOf="@id/tvH"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/tvS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvW"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Spawn Time"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvSpawnTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvW"
+                android:layout_marginStart="@dimen/marginStartAbout"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:layout_toEndOf="@id/tvH"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="20" />
+
+            <TextView
+                android:id="@+id/tvWeak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvS"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Weaknesses"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvWeakness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvS"
+                android:layout_marginStart="@dimen/marginStartAbout"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:layout_toEndOf="@id/tvH"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:lines="2"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="20" />
+
+
+            <TextView
+                android:id="@+id/tvPrev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWeak"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Previous Evolution"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPrevEvolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWeak"
+                android:layout_marginStart="@dimen/marginStartAbout"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:layout_toEndOf="@id/tvH"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:lines="2"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="IvySaur" />
+
+
+            <TextView
+                android:id="@+id/tvNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPrev"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Next Evolution"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvNextEvolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPrev"
+                android:layout_marginStart="@dimen/marginStartAbout"
+                android:layout_marginTop="@dimen/marginTopAbout"
+                android:layout_toEndOf="@id/tvH"
+                android:fontFamily="@font/roboto"
+                android:lineSpacingExtra="4dp"
+                android:lines="2"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="Kurama" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
